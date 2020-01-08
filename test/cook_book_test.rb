@@ -4,6 +4,7 @@ require './lib/ingredient'
 require './lib/recipe'
 require './lib/pantry'
 require './lib/cook_book'
+require './lib/summary'
 
 class CookBookTest < Minitest::Test
 
@@ -34,7 +35,8 @@ class CookBookTest < Minitest::Test
     assert_equal 2, @cookbook.recipes.length
 
     answer = [
-      {:name=>"Mac and Cheese",
+      {
+        :name=>"Mac and Cheese",
         :details=>
         {
           :ingredients=>
@@ -45,7 +47,8 @@ class CookBookTest < Minitest::Test
           :total_calories=>440
         }
       },
-      {:name=>"Burger",
+      {
+        :name=>"Burger",
         :details=>
           {
             :ingredients=>
@@ -56,7 +59,6 @@ class CookBookTest < Minitest::Test
         }
       }
     ]
-
     assert_equal answer, @cookbook.summary
   end
 end

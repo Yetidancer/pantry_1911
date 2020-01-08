@@ -9,6 +9,7 @@ class RecipeTest < Minitest::Test
     @recipe = Recipe.new("Mac and Cheese")
     @ingredient1 = Ingredient.new("Cheese", "C", 100)
     @ingredient2 = Ingredient.new("Macaroni", "oz", 30)
+
   end
 
   def test_it_exists
@@ -50,5 +51,15 @@ class RecipeTest < Minitest::Test
     @recipe.add_ingredient(@ingredient2, 8)
 
     assert_equal 440, @recipe.total_calories
+  end
+
+  def test_it_can_breakdown_ingredients_for_summary
+    @recipe.add_ingredient(@ingredient1, 2)
+    @recipe.add_ingredient(@ingredient2, 8)
+
+
+    list = [{:ingredient=>"Macaroni", :amount=>"8 oz"}, {:ingredient=>"Cheese", :amount=>"2 C"}]
+
+    assert_equal list, @recipe.ingredient_breakdown
   end
 end
