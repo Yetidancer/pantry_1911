@@ -23,14 +23,19 @@ class Pantry
   end
 
   def enough_ingredients_for?(recipe)
-    enough = true
-    recipe.ingredients.each do |ingredient|
-      if !ingredients_stocked.include?(ingredient)
-        enough = false
-      elsif @stock[ingredient] < recipe.ingredients_required[ingredient]
-        enough = false
-      end
-    end
-    enough
+    # enough = true
+    # recipe.ingredients.each do |ingredient|
+    #   if !ingredients_stocked.include?(ingredient)
+    #     enough = false
+    #   elsif @stock[ingredient] < recipe.ingredients_required[ingredient]
+    #     enough = false
+    #   end
+    # end
+    # enough
+
+
+    recipe.ingredients_required.all? do |ingredient, required_amount|
+      stock_check(ingredient) >= required_amount
+    end 
   end
 end
